@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Student List</title>
+    <!-- font -->
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="css.css">
+    <script src="js.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+ 
+    
+    
+</head>
+<body>
+    <div class="container jumbotron">
+        <div class="mt-3 css-1">
+            <h1>Danh sách học viên</h1>
+        </div>
+        <div class="mt-3 css-1">
+            <div class="row">
+                <div class="col-sm-4" style="text-align: left;">
+                    <label for="Email">Email</label>
+                </div>
+                <div class="col-sm-7">
+                    <input type="text" name="" id="inp-fillter" placeholder="Email" class="form-control">
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-sm-10"></div>
+                <div class="col-sm-2">
+                    <button class="btn btn-success btn-block" id="btn-fillter">Lọc</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <button id="btn-add-student" class="btn btn-success">Thêm sinh viên</button>
+        </div>
+        <div class="mt-3">
+            <table class="table" id="user-table">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Birthday</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Phone</th> 
+                        <th scope="col">Action</th>                    
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal Add Student -->
+    <div class="modal fade" id="Add-Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Thêm sinh viên</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <div class="row form-group">
+                    <div class="col-sm-4">
+                        <label for="">Name</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <input type="text" name="" id="ipn-name" placeholder="Name" class="form-control">
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-sm-4">
+                        <label for="">Birthday</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <input type="date" name="" id="ipn-birthday" placeholder="mm/dd/yyyy" class="form-control">
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-sm-4">
+                        <label for="">Email</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <input type="email" name="" id="ipn-email" placeholder="Email" class="form-control">
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-sm-4">
+                        <label for="">Phone</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <input type="text" name="" id="ipn-phone" placeholder="Phone" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-success" id="btn-modal-add-student">Thêm sinh viên</button>
+            <button type="button" class="btn btn-warning" data-dismiss="modal">Hủy bỏ</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+     <!-- Modal Add Student -->
+     <div class="modal fade" id="Edit-Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Chi tiết sinh viên</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <div class="row form-group">
+                    <div class="col-sm-4">
+                        <label for="">Name</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <input type="text" name="" id="ipn-name-edit" placeholder="Name" class="form-control">
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-sm-4">
+                        <label for="">Birthday</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <input type="date" name="" id="ipn-birthday-edit" placeholder="mm/dd/yyyy" class="form-control">
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-sm-4">
+                        <label for="">Email</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <input type="email" name="" id="ipn-email-edit" placeholder="Email" class="form-control">
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-sm-4">
+                        <label for="">Phone</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <input type="text" name="" id="ipn-phone-edit" placeholder="Phone" class="form-control">
+                    </div>
+                </div>
+                <div class="row form-group" style="display: none;">
+                    <div class="col-sm-4">
+                        <label for="">id</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <input type="text" name="" id="ipn-id" placeholder="id" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-success" id="btn-modal-edit-student">Update Thông tin sinh viên</button>
+            <button type="button" class="btn btn-warning" data-dismiss="modal">Hủy bỏ</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- Modal Add Student -->
+    <div class="modal fade" id="Delete-Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Xác nhận xóa User</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <h6>Bạn có chắc muốn xóa User?</h6>
+                <input type="text" name="" id="delete-id" style="display: none;">
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-danger" id="btn-modal-delete-student">Xác nhận</button>
+            <button type="button" class="btn btn-in
+            fo" data-dismiss="modal">Hủy bỏ</button>
+            </div>
+        </div>
+        </div>
+    </div>
+</body>
+</html>
